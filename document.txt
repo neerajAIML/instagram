@@ -1,0 +1,6 @@
+# Generate migration script
+python manage.py db migrate
+
+# Apply migrations 
+python db upgrade
+
