@@ -4,8 +4,8 @@ PostgreSQL_Connection = 'postgresql://postgres:123456789@localhost/instagram'
 Sqlite_Connection = 'sqlite:///database.db'
 
 #Instagram Setting
-insta_name = 'neeraj88maurya21'
-insta_password = 'Admin@del21'
+insta_name = ''
+insta_password = ''
 tables_name = 'instagram'
 #twitter setting
 
