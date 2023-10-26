@@ -81,7 +81,7 @@ class instagramScrap:
         label = 'Positive_'+str(scores[1]) if scores[1] > scores[0] else 'Negative_'+str(scores[0])
 
         return label
-    def scrap_post(self,driver,page,pageName):
+    def scrap_post(self,driver,page,pageName,no_of_page):
         driver.get(page)
         twittPost = list()
 
@@ -103,7 +103,7 @@ class instagramScrap:
         workbook.close()
 
         i=0
-        while i<1:
+        while i<no_of_page:
             
             i+=1
             try:

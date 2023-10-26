@@ -35,7 +35,13 @@ class instagram(Resource):
             print(driver)
             page = data['page']
             page_name = data['pageName']
-            obj.scrap_post(driver,page,page_name)
+            no_of_page = data['no_of_page']
+            print("Before starting",no_of_page)
+            if no_of_page==0:
+                no_of_page = 1
+                print("No of pages",no_of_page)
+
+            obj.scrap_post(driver,page,page_name,no_of_page)
 
             return jsonify({'message':"Instagram Webscraping Successfully done"})
         else:
@@ -114,6 +120,6 @@ if __name__ == '__main__':
         print(response_post.get_json())
 
     #app.run(debug=True)
-    app.run(debug=True, port=5001)
+    app.run(debug=True, port=5002)
     # serve(app, host="0.0.0.0", port=8080)
 
