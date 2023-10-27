@@ -132,7 +132,7 @@ class instagramScrap:
             
             i+=1
             # try:
-            wait = WebDriverWait(driver, 20)  # Increased to 20 seconds
+            wait = WebDriverWait(driver, 30)  # Increased to 20 seconds
             popup_element = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_aabd _aa8k  _al3l']")))
             sleep(5)
             # Locate post elements
