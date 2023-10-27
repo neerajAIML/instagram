@@ -8,6 +8,7 @@ from flask_migrate import Migrate
 from instagram import instagramScrap
 from waitress import serve
 import settings
+from time import pthread_getcpuclockid, sleep
 # creating the flask app
 app = Flask(__name__)
 # creating an API object
@@ -40,7 +41,7 @@ class instagram(Resource):
             if no_of_page==0:
                 no_of_page = 1
                 print("No of pages",no_of_page)
-
+            sleep(5)
             obj.scrap_post(driver,page,page_name,no_of_page)
 
             return jsonify({'message':"Instagram Webscraping Successfully done"})

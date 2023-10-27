@@ -54,13 +54,13 @@ class instagramScrap:
         driver.maximize_window()
 
         # Wait for up to 10 seconds for the element to be present
-        wait = WebDriverWait(driver, 5)
+        wait = WebDriverWait(driver, 10)
         element = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@name='username']")))
-        
+        sleep(5)
         # Input the username into the input field
         username_input = driver.find_element(By.XPATH,"//input[@name='username']")
         username_input.send_keys(username)
-        
+        sleep(5)
         # Input the Password into the input field
         password_input = driver.find_element(By.XPATH,"//input[@name='password']")
         password_input.send_keys(password)
@@ -68,7 +68,8 @@ class instagramScrap:
         #Click on login button
         login_button = driver.find_element(By.XPATH, "//button[@type='submit']")
         login_button.click()
-        sleep(20)
+        sleep(5)
+        print("Login Successfully")
         return driver
     
     #Define function to translate hindi lang to English lang, 
