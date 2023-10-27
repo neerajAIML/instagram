@@ -131,98 +131,98 @@ class instagramScrap:
         while i<no_of_page:
             
             i+=1
-            try:
-                wait = WebDriverWait(driver, 20)  # Increased to 20 seconds
-                popup_element = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_aabd _aa8k  _al3l']")))
-                sleep(5)
-                # Locate post elements
-                post_elements = driver.find_elements(By.XPATH, "//div[@class='_aabd _aa8k  _al3l']")
-                
-                for post_element in post_elements:
-                    try:
-                        sleep(3)
-                        post_element.click()
+            # try:
+            wait = WebDriverWait(driver, 20)  # Increased to 20 seconds
+            popup_element = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_aabd _aa8k  _al3l']")))
+            sleep(5)
+            # Locate post elements
+            post_elements = driver.find_elements(By.XPATH, "//div[@class='_aabd _aa8k  _al3l']")
+            
+            for post_element in post_elements:
+                try:
+                    sleep(3)
+                    post_element.click()
 
-                        wait = WebDriverWait(driver, 10)  # Increased to 20 seconds
-                        popup_element = wait.until(EC.visibility_of_element_located((By.XPATH, "//ul[@class='_a9ym']")))
+                    wait = WebDriverWait(driver, 10)  # Increased to 20 seconds
+                    popup_element = wait.until(EC.visibility_of_element_located((By.XPATH, "//ul[@class='_a9ym']")))
 
-                        post_description = driver.find_elements(By.XPATH, "//h1[@class='_aacl _aaco _aacu _aacx _aad7 _aade']")
-                        instagramPost =post_description[0].text
+                    post_description = driver.find_elements(By.XPATH, "//h1[@class='_aacl _aaco _aacu _aacx _aad7 _aade']")
+                    instagramPost =post_description[0].text
+                    
+                    post_comments = driver.find_elements(By.XPATH, "//ul[@class='_a9ym']")
+                    for post_comment in post_comments:
                         
-                        post_comments = driver.find_elements(By.XPATH, "//ul[@class='_a9ym']")
-                        for post_comment in post_comments:
-                            
-                            # h2_elements = post_comment.find_element(By.TAG_NAME, 'h2')  # Find the h2 element
-                            html_content = post_comment.get_attribute("outerHTML")
-                            
-                            soup = BeautifulSoup(html_content, 'html.parser')
-                            h2Tag = soup.find('h3')
-                            print("User Name", h2Tag.text)
+                        # h2_elements = post_comment.find_element(By.TAG_NAME, 'h2')  # Find the h2 element
+                        html_content = post_comment.get_attribute("outerHTML")
+                        
+                        soup = BeautifulSoup(html_content, 'html.parser')
+                        h2Tag = soup.find('h3')
+                        print("User Name", h2Tag.text)
 
-                            comment = soup.find(attrs={'dir': 'auto'})
-                            print("Comment",comment.text)
-                            comment = comment.text
-                            #arg= 'नमस्ते, कैसे हो?'
-                            # if comment:
-                            #     comment_english = self.hindToEnglish(comment)
-                            # else:
-                            #     comment_english = 'None'
+                        comment = soup.find(attrs={'dir': 'auto'})
+                        print("Comment",comment.text)
+                        comment = comment.text
+                        #arg= 'नमस्ते, कैसे हो?'
+                        # if comment:
+                        #     comment_english = self.hindToEnglish(comment)
+                        # else:
+                        #     comment_english = 'None'
 
-                            if comment:
-                                #'Positive' if scores[1] > scores[0] else 'Negative'
-                                pos_neg_comment = self.get_sentiment(comment)
+                        if comment:
+                            #'Positive' if scores[1] > scores[0] else 'Negative'
+                            pos_neg_comment = self.get_sentiment(comment)
 
-                                # Anti Government or Pro Government
-                                print(pos_neg_comment)
-                                scoreList = pos_neg_comment.split('_')
-                                scoreNo = re.findall("\d+\.\d+", scoreList[1])
+                            # Anti Government or Pro Government
+                            print(pos_neg_comment)
+                            scoreList = pos_neg_comment.split('_')
+                            scoreNo = re.findall("\d+\.\d+", scoreList[1])
 
-                                print(f"convert string float to float {float(scoreNo[0])}")
-                                if scoreList[0].strip()=='Positive':
-                                    if float(scoreNo[0]) > 0.9000:
-                                        antPro = 'Pro Government'
-                                    else:
-                                        antPro = 'Anti Government'    
+                            print(f"convert string float to float {float(scoreNo[0])}")
+                            if scoreList[0].strip()=='Positive':
+                                if float(scoreNo[0]) > 0.9000:
+                                    antPro = 'Pro Government'
                                 else:
-                                    if float(scoreNo[0]) > 0.9000:
-                                        antPro = 'Anti Government'
-                                    else:
-                                        antPro = 'Pro Government'
-                                score = scoreNo[0]
-
+                                    antPro = 'Anti Government'    
                             else:
-                                antPro = "Neutral"
-                                score = "00.00"
+                                if float(scoreNo[0]) > 0.9000:
+                                    antPro = 'Anti Government'
+                                else:
+                                    antPro = 'Pro Government'
+                            score = scoreNo[0]
 
-                            data = {
-                                "Post":[instagramPost],
-                                "Name":[h2Tag.text],
-                                "Comment":[comment],
-                                'Anti/Pro':[antPro],
-                                'Sentiment Score':[score]
-                            }
-                            print(data)
-                            df = pd.DataFrame(data)
+                        else:
+                            antPro = "Neutral"
+                            score = "00.00"
 
-                            # appending the data of df after the data of demo1.xlsx
-                            with pd.ExcelWriter(fileName+".xlsx",mode="a",engine="openpyxl",if_sheet_exists="overlay") as writer:
-                                df.to_excel(writer, sheet_name="Sheet1",header=None, startrow=writer.sheets["Sheet1"].max_row,index=False)
-                                print("Data Inserted into Excel Sheet")
-                                time.sleep(3)
+                        data = {
+                            "Post":[instagramPost],
+                            "Name":[h2Tag.text],
+                            "Comment":[comment],
+                            'Anti/Pro':[antPro],
+                            'Sentiment Score':[score]
+                        }
+                        print(data)
+                        df = pd.DataFrame(data)
 
-                        sleep(2)
-                    except Exception as error:
-                        fullURL = driver.current_url
-                        print(fullURL)
-                        if fullURL!=page:
-                            driver.execute_script("window.history.go(-1)")  # Simulate the browser's back button with JavaScript
-                        print(error)
-                        
-                driver.execute_script('window.scrollTo(0, document.body.scrollHeight);')
-                sleep(3)
-            except Exception as error:
-                #driver.execute_script("window.history.go(-1)")  # Simulate the browser's back button with JavaScript
-                print(error)
+                        # appending the data of df after the data of demo1.xlsx
+                        with pd.ExcelWriter(fileName+".xlsx",mode="a",engine="openpyxl",if_sheet_exists="overlay") as writer:
+                            df.to_excel(writer, sheet_name="Sheet1",header=None, startrow=writer.sheets["Sheet1"].max_row,index=False)
+                            print("Data Inserted into Excel Sheet")
+                            time.sleep(3)
+
+                    sleep(2)
+                except Exception as error:
+                    fullURL = driver.current_url
+                    print(fullURL)
+                    if fullURL!=page:
+                        driver.execute_script("window.history.go(-1)")  # Simulate the browser's back button with JavaScript
+                    print(error)
+                    
+            driver.execute_script('window.scrollTo(0, document.body.scrollHeight);')
+            sleep(3)
+            # except Exception as error:
+            #     #driver.execute_script("window.history.go(-1)")  # Simulate the browser's back button with JavaScript
+            #     print(error)
 
         df = pd.read_excel(fileName+'.xlsx', sheet_name='Sheet1')
         # Create a SQLAlchemy engine
