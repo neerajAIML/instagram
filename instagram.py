@@ -15,7 +15,6 @@ import re
 # Import libraries
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
-import time
 import xlsxwriter
 import pandas as pd
 import psycopg2
@@ -64,11 +63,11 @@ class instagramScrap:
         # Input the Password into the input field
         password_input = driver.find_element(By.XPATH,"//input[@name='password']")
         password_input.send_keys(password)
-
+        sleep(10)
         #Click on login button
         login_button = driver.find_element(By.XPATH, "//button[@type='submit']")
         login_button.click()
-        sleep(5)
+        sleep(20)
         print("Login Successfully")
         return driver
     
