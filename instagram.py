@@ -22,9 +22,34 @@ import psycopg2
 from sqlalchemy import create_engine
 import settings
 
+from selenium.webdriver.chrome.service import Service
+
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from webdriver_manager.firefox import GeckoDriverManager
+
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
+
 class instagramScrap:
     def login_to_instagram(self,username,password):
-        driver = webdriver.Chrome()  # Replace with the appropriate WebDriver for your browser
+
+        # Set Chrome options to run in headless mode
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+
+        # Create a new ChromeDriver instance
+        driver = webdriver.Chrome(options=chrome_options)
+
+        # options = FirefoxOptions()
+        # options.add_argument("--headless")
+        # #driver = webdriver.Firefox(executable_path=GeckoDriverManager().install(),options=options)
+		# #driver.get(baseurl)
+        # service = Service(GeckoDriverManager().install())
+        # driver = webdriver.Firefox(service=service, options=options)
+
+
         driver.get("https://www.instagram.com/")
         driver.maximize_window()
 
