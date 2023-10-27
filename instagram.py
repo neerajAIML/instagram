@@ -68,7 +68,7 @@ class instagramScrap:
         #Click on login button
         login_button = driver.find_element(By.XPATH, "//button[@type='submit']")
         login_button.click()
-        sleep(5)
+        sleep(20)
         return driver
     
     #Define function to translate hindi lang to English lang, 
@@ -132,7 +132,7 @@ class instagramScrap:
             
             i+=1
             # try:
-            wait = WebDriverWait(driver, 30)  # Increased to 20 seconds
+            wait = WebDriverWait(driver, 50)  # Increased to 20 seconds
             popup_element = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='_aabd _aa8k  _al3l']")))
             sleep(5)
             # Locate post elements
