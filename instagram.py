@@ -29,23 +29,31 @@ from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 
+from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.firefox.options import Options
+
+from selenium import webdriver
+from webdriver_manager.firefox import GeckoDriverManager
+import geckodriver_autoinstaller
+
 class instagramScrap:
     def login_to_instagram(self,username,password):
 
-        # Set Chrome options to run in headless mode
-        chrome_options = Options()
-        chrome_options.add_argument('--headless')
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--disable-dev-shm-usage')
+        # # Set Chrome options to run in headless mode
+        # chrome_options = Options()
+        # chrome_options.add_argument('--headless')
+        # chrome_options.add_argument('--no-sandbox')
+        # chrome_options.add_argument('--disable-dev-shm-usage')
 
-        # Create a new ChromeDriver instance
-        driver = webdriver.Chrome(options=chrome_options)
+        # # Create a new ChromeDriver instance
+        # driver = webdriver.Chrome(options=chrome_options)
 
         # options = FirefoxOptions()
         # options.add_argument("--headless")
-        # service = Service(GeckoDriverManager().install())
-        # driver = webdriver.Firefox(service=service, options=options)
+        # driver = webdriver.Firefox(executable_path=GeckoDriverManager().install(),options=options)
 
+        geckodriver_autoinstaller.install()
+        driver = webdriver.Firefox()
 
         driver.get("https://www.instagram.com/")
         driver.maximize_window()
