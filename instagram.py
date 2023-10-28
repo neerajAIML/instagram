@@ -43,8 +43,6 @@ class instagramScrap:
 
         # options = FirefoxOptions()
         # options.add_argument("--headless")
-        # #driver = webdriver.Firefox(executable_path=GeckoDriverManager().install(),options=options)
-		# #driver.get(baseurl)
         # service = Service(GeckoDriverManager().install())
         # driver = webdriver.Firefox(service=service, options=options)
 
