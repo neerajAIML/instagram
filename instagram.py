@@ -54,6 +54,10 @@ class instagramScrap:
         wait = WebDriverWait(driver, 10)
         element = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@name='username']")))
         sleep(5)
+
+        htmlData = driver.page_source
+        print(htmlData)
+
         # Input the username into the input field
         username_input = driver.find_element(By.XPATH,"//input[@name='username']")
         username_input.send_keys(username)
