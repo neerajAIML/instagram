@@ -4,7 +4,7 @@
 #PostgreSQL_Connection = 'postgresql://postgres:123456789@localhost/instagram'
 
 #localhost Connection
-PostgreSQL_Connection = 'postgresql://postgres:aisal2023@13.53.173.208/aisal_analytics'
+PostgreSQL_Connection = 'postgresql://postgres:aisl2023@13.53.173.208/aisl_analytics'
 
 Sqlite_Connection = 'sqlite:///database.db'
 
