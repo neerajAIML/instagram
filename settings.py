@@ -9,8 +9,8 @@ PostgreSQL_Connection = 'postgresql://postgres:aisal2023@13.53.173.208/aisal_ana
 Sqlite_Connection = 'sqlite:///database.db'
 
 #Instagram Setting
-insta_name = 'neeraj88maurya21'
-insta_password = 'Admin@del21'
+insta_name = ''
+insta_password = ''
 tables_name = 'instagram'
 #twitter setting
 
