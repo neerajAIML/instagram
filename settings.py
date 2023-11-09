@@ -4,14 +4,19 @@
 #PostgreSQL_Connection = 'postgresql://postgres:123456789@localhost/instagram'
 
 #localhost Connection
-PostgreSQL_Connection = 'postgresql://postgres:aisl2023@13.53.173.208/aisl_analytics'
+PostgreSQL_Connection = 'postgresql://postgres:aisal2023@13.53.173.208/aisal_analytics'
 
 Sqlite_Connection = 'sqlite:///database.db'
 
 #Instagram Setting
-insta_name = ''
-insta_password = ''
+insta_name = 'neeraj88maurya21'
+insta_password = 'Admin@del21'
 tables_name = 'instagram'
-#twitter setting
 
 #facebook setting
+facebook_name = 'neeraj88maurya@gmail.com'
+facebook_password = 'Admin@del21'
+facebook_tables_name = 'facebook'
+
+#twitter setting
+
