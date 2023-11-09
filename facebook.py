@@ -404,7 +404,7 @@ class facebookScrap(prepareFinalExclsheet):
 
         driver = webdriver.Chrome(options=chrome_options)
 
-        driver = webdriver.Chrome()  # Replace with the appropriate WebDriver for your browser
+        # driver = webdriver.Chrome()  # Replace with the appropriate WebDriver for your browser
         # Create a new ChromeDriver instance
         
 
