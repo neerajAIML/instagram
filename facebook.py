@@ -21,6 +21,8 @@ import phonenumbers
 from transformers import BertTokenizer, BertForSequenceClassification
 from torch.nn.functional import softmax
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 class prepareFinalExclsheet:
 
@@ -402,7 +404,8 @@ class facebookScrap(prepareFinalExclsheet):
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--disable-dev-shm-usage')
 
-        driver = webdriver.Chrome(options=chrome_options)
+       # driver = webdriver.Chrome(options=chrome_options)
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
         # driver = webdriver.Chrome()  # Replace with the appropriate WebDriver for your browser
         # Create a new ChromeDriver instance
