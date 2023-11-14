@@ -405,7 +405,7 @@ class facebookScrap(prepareFinalExclsheet):
         chrome_options.add_argument('--disable-dev-shm-usage')
 
        # driver = webdriver.Chrome(options=chrome_options)
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
         # driver = webdriver.Chrome()  # Replace with the appropriate WebDriver for your browser
         # Create a new ChromeDriver instance
